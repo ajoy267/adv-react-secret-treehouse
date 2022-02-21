@@ -21,6 +21,11 @@ export default function Login() {
 
     // TODO: If login was unsuccessful, set an error with a message
     // to display to the user that their login failed.
+    {
+      loginWasSuccessful
+        ? history.replace(from.pathname)
+        : setError('Login was unsuccesful, Please try again');
+    }
     //
     // If login was successful, use the history hook
     // from React Router to replace the current URL with the URL
@@ -32,18 +37,24 @@ export default function Login() {
     <>
       <h3>You must log in to view the page at {from.pathname}</h3>
       <form onSubmit={handleLogin} className={styles.loginForm}>
-        <label>Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-        />{' '}
-        <label>Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-        />
+        <label>
+          Email
+          <input
+            id="email"
+            name="email"
+            type="email"
+            onChange={handleFormChange}
+          />
+        </label>
+        <label>
+          Password
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={handleFormChange}
+          />
+        </label>
         <button type="submit" aria-label="Sign In">
           Sign in
         </button>
